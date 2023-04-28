@@ -30,8 +30,16 @@ Route::middleware('auth')->group(function () {
 });
 
 
-Route::get('/dashboard/users', [UserController::class, 'index'])
-    ->name('user.users')
-    ->middleware('auth');
+
+
+Route::middleware('auth')->group(function () {
+
+    Route::get('/dashboard/users', [UserController::class, 'index'])->name('user.users');
+    Route::get('/dashboard/user/create', [UserController::class, 'create'])->name('user.create');
+    Route::get('/dashboard/user/show/{id}', [UserController::class, 'show'])->name('user.show');
+    Route::post('/dashboard/user/store', [UserController::class, 'store'])->name('user.store');
+    Route::put('/dashboard/user/edit/{id}', [UserController::class, 'edit'])->name('user.edit');
+    Route::delete('/dasboard/user/delete/', [UserController::class, 'delete'])->name('user.delete');
+});
 
 require __DIR__ . '/auth.php';
