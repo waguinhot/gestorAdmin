@@ -33,6 +33,14 @@ class UserController extends Controller
 
     public function create()
     {
+        /**
+         * @var User $user
+         */
+        $user = Auth::user();
+
+        if (!$user->can('admin')) {
+            abort(404);
+        }
         return view('user.create');
     }
 
@@ -53,6 +61,16 @@ class UserController extends Controller
 
     public function show($id)
     {
+
+        /**
+         * @var User $user
+         */
+        $user = Auth::user();
+
+        if (!$user->can('admin')) {
+            abort(404);
+        }
+
         $user = User::find($id);
         if (!$user) {
             return redirect()->back();
@@ -63,6 +81,8 @@ class UserController extends Controller
 
     public function edit(EditUserRequest $request, $id)
     {
+
+
         $user = User::find($request->id);
 
         if (!$user) {
@@ -81,6 +101,9 @@ class UserController extends Controller
     }
     public function delete(Request $request)
     {
+
+
+
         $request->validate([
             'id' => 'required'
         ]);
