@@ -7,6 +7,7 @@ use App\Http\Requests\User\EditUserRequest;
 use App\Http\Requests\User\UserRequest;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
@@ -20,7 +21,14 @@ class UserController extends Controller
     {
         $users = User::all();
 
-        return view('user.users', ['users' => $users]);
+        /**
+         * @var User $user
+         */
+        $user = Auth::user();
+        if ($user->can('admin')) {
+            return view('user.users', ['users' => $users]);
+        }
+        return view('user.lowaccess');
     }
 
     public function create()
@@ -40,7 +48,7 @@ class UserController extends Controller
         $user->access_brand = (int) $request->access_brand;
         $user->save();
 
-        return redirect()->route('user.users');
+        return redirect()->route('dashboard');
     }
 
     public function show($id)
@@ -69,7 +77,7 @@ class UserController extends Controller
         $user->save();
 
 
-        return redirect()->route('user.users');
+        return redirect()->route('dashboard');
     }
     public function delete(Request $request)
     {
@@ -85,6 +93,6 @@ class UserController extends Controller
 
         $user->delete();
 
-        return redirect()->route('user.users');
+        return redirect()->route('dashboard');
     }
 }

@@ -19,10 +19,10 @@ class CategoryController extends Controller
          */
         $user = Auth::user();
 
-        if ($user->can('category')) {
-            return view('tasks.category');
+        if (!$user->can('category')) {
+            abort(404);
         }
 
-        return redirect('dashboard');
+        return view('tasks.category');
     }
 }

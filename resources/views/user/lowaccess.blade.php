@@ -2,5 +2,5 @@
 
 
 @section('content')
-    Tela de categorias
+    Pagina de acesso de usuarios comuns
 @endsection

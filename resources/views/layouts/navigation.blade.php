@@ -15,6 +15,28 @@
                     <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                         {{ __('Dashboard') }}
                     </x-nav-link>
+
+
+                    @can('brand')
+                    <x-nav-link :href="route('brand')" :active="request()->routeIs('brand')">
+                        {{ __('Brand') }}
+                    </x-nav-link>
+                    @endcan
+
+                    @can('category')
+                    <x-nav-link :href="route('category')" :active="request()->routeIs('category')">
+                        {{ __('Category') }}
+                    </x-nav-link>
+                    @endcan
+
+
+                    @can('product')
+                    <x-nav-link :href="route('product')" :active="request()->routeIs('product')">
+                        {{ __('Product') }}
+                    </x-nav-link>
+                    @endcan
+
+
                 </div>
             </div>
 

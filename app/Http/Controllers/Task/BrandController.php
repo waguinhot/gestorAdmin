@@ -19,10 +19,9 @@ class BrandController extends Controller
          */
         $user = Auth::user();
 
-        if ($user->can('brand')) {
-            return view('tasks.brand');
+        if (!$user->can('brand')) {
+            abort(404);
         }
-
-        return redirect('dashboard');
+        return view('tasks.brand');
     }
 }

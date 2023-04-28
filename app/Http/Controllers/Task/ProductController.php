@@ -19,10 +19,10 @@ class ProductController extends Controller
          */
         $user = Auth::user();
 
-        if ($user->can('product')) {
-            return view('tasks.product');
+        if (!$user->can('product')) {
+            abort(404);
         }
 
-        return redirect('dashboard');
+        return view('tasks.product');
     }
 }
