@@ -49,12 +49,12 @@ O projeto estará disponível em http://localhost:8000/
 ## Dados de acesso
 
 1 - Administrator
-admin@email.com
-secret123
+    login: admin@email.com
+    password:secret123
 
 2 - User
-user@email.com
-secret123
+    login: user@email.com
+    password: secret123
 
 
 
