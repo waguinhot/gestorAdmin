@@ -2,9 +2,11 @@
 
 
 @section('content')
+<a href="{{route('user.create')}}">
 <button  type="button" class=" font-bold  text-white bg-gradient-to-r from-green-400 via-green-500 to-green-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-green-300 dark:focus:ring-green-800 shadow-lg shadow-green-500/50 dark:shadow-lg dark:shadow-green-800/80 rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2 text-[20px]">
-    <a href="{{route('user.create')}}"> New User</a>
+     New User
 </button>
+</a>
 <div class="flex w-full font-bold items-center mt-4">
     <div class="w-3/12">
         Email
@@ -13,7 +15,7 @@
         Name
     </div>
     <div class="w-2/12">
-        Products Access
+        Product Access
     </div>
     <div class="w-1/12">
         Brand Access
@@ -60,8 +62,10 @@
                 @endif
             </div>
             <div class="w-1/12 flex">
-                <button type="button" class="text-white font-bold bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2">
-                    <a href="{{route('user.show', ['id' => $user->id])}}">Editar</a></button>
+
+                    <a href="{{route('user.show', ['id' => $user->id])}}">
+
+                        <button type="button" class="text-white font-bold bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2">Editar</button></a>
 
                 <form action="{{route('user.delete')}}" method="POST">
                     @method('DELETE')

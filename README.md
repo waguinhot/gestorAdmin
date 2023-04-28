@@ -36,6 +36,8 @@ npm install
 
 npm run dev
 
+(durante todo o uso da aplicacao necessita que o npm run dev esteja sendo executado para o css carregar de forma correta!)
+
 ## Executando o projeto
 
 Se tudo correu bem durante a instalação, você pode iniciar o servidor local usando o seguinte comando:
@@ -43,6 +45,19 @@ Se tudo correu bem durante a instalação, você pode iniciar o servidor local u
 php artisan serve
 
 O projeto estará disponível em http://localhost:8000/
+
+## Dados de acesso
+
+1 - Administrator
+admin@email.com
+secret123
+
+2 - User
+user@email.com
+secret123
+
+
+
 
 ## Contribuindo
 
