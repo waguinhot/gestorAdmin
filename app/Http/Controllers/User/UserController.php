@@ -33,19 +33,14 @@ class UserController extends Controller
 
     public function create()
     {
-        /**
-         * @var User $user
-         */
-        $user = Auth::user();
-
-        if (!$user->can('admin')) {
-            abort(404);
-        }
+        $this->verifyAccess();
         return view('user.create');
     }
 
     public function store(UserRequest $request)
     {
+
+        $this->verifyAccess();
 
         $user = new User();
         $user->name = $request->name;
@@ -62,14 +57,7 @@ class UserController extends Controller
     public function show($id)
     {
 
-        /**
-         * @var User $user
-         */
-        $user = Auth::user();
-
-        if (!$user->can('admin')) {
-            abort(404);
-        }
+        $this->verifyAccess();
 
         $user = User::find($id);
         if (!$user) {
@@ -82,6 +70,7 @@ class UserController extends Controller
     public function edit(EditUserRequest $request, $id)
     {
 
+        $this->verifyAccess();
 
         $user = User::find($request->id);
 
@@ -102,7 +91,7 @@ class UserController extends Controller
     public function delete(Request $request)
     {
 
-
+        $this->verifyAccess();
 
         $request->validate([
             'id' => 'required'
@@ -117,5 +106,16 @@ class UserController extends Controller
         $user->delete();
 
         return redirect()->route('dashboard');
+    }
+
+    private function verifyAccess(): void
+    {
+        /**
+         * @var User $user
+         */
+        $user = Auth::user();
+        if (!$user->can('admin')) {
+            abort(404);
+        }
     }
 }
