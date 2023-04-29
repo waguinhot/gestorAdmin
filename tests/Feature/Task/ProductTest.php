@@ -34,6 +34,6 @@ class ProductTest extends TestCase
 
         $this->actingAs($user);
         $response = $this->get(route('product'));
-        $response->assertStatus(404);
+        $response->assertStatus(403);
     }
 }

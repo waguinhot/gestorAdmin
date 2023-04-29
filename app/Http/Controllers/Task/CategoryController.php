@@ -14,14 +14,7 @@ class CategoryController extends Controller
     }
     public function index()
     {
-        /**
-         * @var User $user
-         */
-        $user = Auth::user();
-
-        if (!$user->can('category')) {
-            abort(404);
-        }
+        $this->authorize('category');
 
         return view('tasks.category');
     }

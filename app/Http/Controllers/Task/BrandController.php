@@ -14,14 +14,7 @@ class BrandController extends Controller
     }
     public function index()
     {
-        /**
-         * @var User $user
-         */
-        $user = Auth::user();
-
-        if (!$user->can('brand')) {
-            abort(404);
-        }
+        $this->authorize('brand');
         return view('tasks.brand');
     }
 }

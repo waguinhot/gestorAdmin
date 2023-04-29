@@ -19,13 +19,13 @@ class UserController extends Controller
 
     public function index()
     {
-        $users = User::all();
+        $users = User::query()->where('access_user',  0)->get();
 
         /**
          * @var User $user
          */
         $user = Auth::user();
-        if ($user->can('admin')) {
+        if ($this->authorize('admin')) {
             return view('user.users', ['users' => $users]);
         }
         return view('user.lowaccess');
@@ -33,14 +33,14 @@ class UserController extends Controller
 
     public function create()
     {
-        $this->verifyAccess();
+        $this->authorize('admin');
         return view('user.create');
     }
 
     public function store(UserRequest $request)
     {
 
-        $this->verifyAccess();
+        $this->authorize('admin');
 
         $user = new User();
         $user->name = $request->name;
@@ -57,7 +57,7 @@ class UserController extends Controller
     public function show($id)
     {
 
-        $this->verifyAccess();
+        $this->authorize('admin');
 
         $user = User::find($id);
         if (!$user) {
@@ -70,7 +70,7 @@ class UserController extends Controller
     public function edit(EditUserRequest $request, $id)
     {
 
-        $this->verifyAccess();
+        $this->authorize('admin');
 
         $user = User::find($request->id);
 
@@ -91,7 +91,7 @@ class UserController extends Controller
     public function delete(Request $request)
     {
 
-        $this->verifyAccess();
+        $this->authorize('admin');
 
         $request->validate([
             'id' => 'required'
@@ -106,16 +106,5 @@ class UserController extends Controller
         $user->delete();
 
         return redirect()->route('dashboard');
-    }
-
-    private function verifyAccess(): void
-    {
-        /**
-         * @var User $user
-         */
-        $user = Auth::user();
-        if (!$user->can('admin')) {
-            abort(404);
-        }
     }
 }

@@ -21,9 +21,9 @@ class DatabaseSeeder extends Seeder
             'email' => 'admin@email.com',
             'password' => Hash::make('secret123'),
             'access_user' => 1,
-            'access_product' => 1,
-            'access_category' => 1,
-            'access_brand' => 1
+            'access_product' => 0,
+            'access_category' => 0,
+            'access_brand' => 0
         ]);
 
         User::factory()->create([
@@ -34,6 +34,16 @@ class DatabaseSeeder extends Seeder
             'access_product' => 0,
             'access_category' => 0,
             'access_brand' => 0
+        ]);
+
+        User::factory()->create([
+            'name' => 'User User',
+            'email' => 'allpermission@email.com',
+            'password' => Hash::make('secret123'),
+            'access_user' => 0,
+            'access_product' => 1,
+            'access_category' => 1,
+            'access_brand' => 1
         ]);
 
         User::factory(5)->create();

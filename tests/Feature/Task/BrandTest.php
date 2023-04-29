@@ -38,6 +38,6 @@ class BrandTest extends TestCase
 
         $response = $this->get(route('brand'));
 
-        $response->assertStatus(404);
+        $response->assertStatus(403);
     }
 }

@@ -14,14 +14,7 @@ class ProductController extends Controller
     }
     public function index()
     {
-        /**
-         * @var User $user
-         */
-        $user = Auth::user();
-
-        if (!$user->can('product')) {
-            abort(404);
-        }
+        $this->authorize('product');
 
         return view('tasks.product');
     }

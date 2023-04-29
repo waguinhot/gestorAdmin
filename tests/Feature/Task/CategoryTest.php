@@ -21,7 +21,8 @@ class CategoryTest extends TestCase
 
     public function test_user_has_permission_access_to_category()
     {
-        $user = User::factory()->create(['access_category' => 1]);
+        $user = User::factory()
+            ->create(['access_category' => 1]);
 
         $this->actingAs($user);
 
@@ -38,6 +39,6 @@ class CategoryTest extends TestCase
 
         $response = $this->get(route('category'));
 
-        $response->assertStatus(404);
+        $response->assertStatus(403);
     }
 }

@@ -34,7 +34,7 @@ class UserTest extends TestCase
 
         $this->actingAs($user);
         $response = $this->get(route('user.create'));
-        $response->assertStatus(404);
+        $response->assertStatus(403);
     }
 
     public function test_user_has_permission_admin_update_access()
@@ -52,7 +52,7 @@ class UserTest extends TestCase
 
         $this->actingAs($user);
         $response = $this->get(route('user.show', ['id' => $user->id]));
-        $response->assertStatus(404);
+        $response->assertStatus(403);
     }
 
     public function test_id_not_found_in_show_user()

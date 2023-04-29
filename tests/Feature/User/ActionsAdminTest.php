@@ -130,6 +130,6 @@ class ActionsAdminTest extends TestCase
         //nao sei se e tao legal assim excluir a propria conta que esta logada :|
 
         $response = $this->delete(route('user.delete', ['id' => $user->id]));
-        $response->assertStatus(404);
+        $response->assertStatus(403);
     }
 }
